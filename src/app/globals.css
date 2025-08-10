@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
+@theme inline{
+    --font-Sovranix: 'Sovranix', sans-serif;
+    --font-Warband: 'Warband', sans-serif;
+}
+@font-face {
+    font-family:Sovranix;
+    src: url(/fonts/Sovranix-Medium.ttf) format('truetype');
+}
 
-
-
-
-
-
+@font-face {
+    font-family:Warband; ;
+    src: url(/fonts/Warband.otf) format('opentype');
+}
