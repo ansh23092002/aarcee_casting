@@ -4,7 +4,8 @@ import React from "react";
 import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Services from "@/components/Services";
-
+import Product from "@/components/Product";
+import Quality from "@/components/Quality";
 export default function Home() {
   return (
    <div className="">
@@ -12,6 +13,8 @@ export default function Home() {
     <Hero/>
     <About/>
     <Services/>
+    <Product/>
+    <Quality/>
     <Footer/>
    </div>
   );

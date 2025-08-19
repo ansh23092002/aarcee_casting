@@ -3,8 +3,8 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import Image from "next/image";
 const About = () => {
   return (
-    <div className="min-sm:flex  w-sceen h-full bg-color  p-20 gap-10 items-center justify-around">
-      <div className="w-full h-100 border border-white  rounded-xl w-full overflow-hidden ">
+    <div className="min-sm:flex  w-sceen h-full bg-color p-6 md:p-20 gap-10 items-center justify-around ">
+      <div className="w-full md:h-150   rounded-xl w-full overflow-hidden ">
         {/* image */}
        <Image
       src="/assets/image/Sand_Casting.jpg"
@@ -15,7 +15,7 @@ const About = () => {
       </div>
       <div className="text-white  w-full flex flex-col gap-7">
         <h1 className="text-4xl font-bold">
-          <span className="text-green-800 ">
+          <span className="text-heading ">
             {" "}
             <u>About</u>
           </span>{" "}
@@ -38,22 +38,22 @@ const About = () => {
         <div className="flex flex-row  gap-10  justify-items-start">
           <div className="">
             <p className="flex items-center gap-3">
-              <AiFillSafetyCertificate style={{ color: "green" }} />
+              <AiFillSafetyCertificate style={{ color: "yellow" }} />
               35+ Years Experience
             </p>
             <p className="flex items-center gap-3">
-              <AiFillSafetyCertificate style={{ color: "green" }} />
+              <AiFillSafetyCertificate style={{ color: "yellow" }} />
               ISO 9001 Certified{" "}
             </p>
           </div>
 
           <div>
             <p className="flex items-center gap-3">
-              <AiFillSafetyCertificate style={{ color: "green" }} />
+              <AiFillSafetyCertificate style={{ color: "yellow" }} />
               Global Distribution
             </p>
             <p className="flex items-center gap-3">
-              <AiFillSafetyCertificate style={{ color: "green" }} />
+              <AiFillSafetyCertificate style={{ color: "yellow" }} />
               custom Solution
             </p>
           </div>

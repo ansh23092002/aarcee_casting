@@ -22,4 +22,7 @@
   .bg-color{ 
     @apply bg-[#28272b];
   }
+  .text-heading{
+    @apply text-yellow-400;
+  }
 }

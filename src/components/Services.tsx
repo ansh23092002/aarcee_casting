@@ -6,7 +6,7 @@ const Services = () => {
   const contents = [
     {
       id: "1",
-      icon: <IoLogoBuffer style={{color:'green'}}/>,
+      icon: <IoLogoBuffer style={{color:'yellow'}}/>,
       title: "Design & Engineering",
       description:
         "our engineering team works closely with clients to optimize designe for castability, structural integrity, and cost-efficiency.",
@@ -18,7 +18,7 @@ const Services = () => {
     },
     {
       id: "2",
-      icon: <IoLogoBuffer style={{color:'green'}}/>,
+      icon: <IoLogoBuffer style={{color:'yellow'}}/>,
       title: "Design & Engineering",
       description:
         "our engineering team works closely with clients to optimize designe for castability, structural integrity, and cost-efficiency.",
@@ -30,7 +30,7 @@ const Services = () => {
     },
     {
       id: "3",
-      icon: <IoLogoBuffer style={{color:'green'}}/>,
+      icon: <IoLogoBuffer style={{color:'yellow'}}/>,
       title: "Design & Engineering",
       description:
         "our engineering team works closely with clients to optimize designe for castability, structural integrity, and cost-efficiency.",
@@ -42,10 +42,10 @@ const Services = () => {
     },
   ];
   return (
-    <div className="bg-[#373a47] w-full text-white ">
+    <div className="bg-[#373a47] w-full text-white p-6 md:p-20 ">
       <div className=" flex-center flex-col itmes-center justify-center ">
         <h2 className="font-bold text-3xl p-4">
-          Our <span className="text-green-900">Services</span>
+          Our <span className="text-heading">Services</span>
         </h2>
         <p className="w-1/2 text-center">
           From making and Prototyping to final Prduction, we offer
@@ -66,7 +66,7 @@ const Services = () => {
             <ul>
               {items.list.map((data, index) => (
                 <li key={index} className="flex items-center gap-4">
-                  <FaCircle style={{color:'green'}} />
+                  <FaCircle style={{color:'yellow'}} />
                   {data}
                 </li>
               ))}
