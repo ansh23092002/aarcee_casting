@@ -3,7 +3,7 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import Image from "next/image";
 const About = () => {
   return (
-    <div className="min-sm:flex  w-sceen h-full bg-zinc-900  p-20 gap-10 items-center justify-around">
+    <div className="min-sm:flex  w-sceen h-full bg-color  p-20 gap-10 items-center justify-around">
       <div className="w-full h-100 border border-white  rounded-xl w-full overflow-hidden ">
         {/* image */}
        <Image

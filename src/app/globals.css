@@ -13,3 +13,13 @@
     font-family:Warband; ;
     src: url(/fonts/Warband.otf) format('opentype');
 }
+
+@layer utilities {
+   .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .bg-color{ 
+    @apply bg-[#28272b];
+  }
+}
