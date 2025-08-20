@@ -40,7 +40,7 @@ const Product = () => {
     },
   ];
   return (
-    <div className="bg-[#373a47] w-full text-white ">
+    <div className=" w-full  ">
       <div className=" flex-center flex-col itmes-center justify-center ">
         <h2 className="font-bold text-3xl p-4">
           Our <span className="text-heading">Products</span>
@@ -55,7 +55,7 @@ const Product = () => {
         {ProductItem.map((items) => (
           <div
             key={items.id}
-            className="  m-4  flex flex-col gap-3 rounded text-white bg-color relative"
+            className="  m-4  flex flex-col gap-3 rounded  relative bg-black text-white"
           >
             <img src={items.img} alt="porduct image" className=" mask-b-from-5% mask-b-to-100% h-70" />
             <div className="absolute top-35 p-5 ">

@@ -3,7 +3,7 @@ import { AiFillSafetyCertificate } from "react-icons/ai";
 import Image from "next/image";
 const About = () => {
   return (
-    <div className="min-sm:flex  w-sceen h-full bg-color p-6 md:p-20 gap-10 items-center justify-around ">
+    <div className="min-sm:flex  w-sceen h-full  p-6 md:p-20 gap-10 items-center justify-around ">
       <div className="w-full md:h-150   rounded-xl w-full overflow-hidden ">
         {/* image */}
        <Image
@@ -13,7 +13,7 @@ const About = () => {
       alt="Picture of the author"
     />
       </div>
-      <div className="text-white  w-full flex flex-col gap-7">
+      <div className="  w-full flex flex-col gap-7">
         <h1 className="text-4xl font-bold">
           <span className="text-heading ">
             {" "}

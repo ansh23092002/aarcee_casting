@@ -42,7 +42,7 @@ const Services = () => {
     },
   ];
   return (
-    <div className="bg-[#373a47] w-full text-white p-6 md:p-20 ">
+    <div className=" w-full  p-6 md:p-20 ">
       <div className=" flex-center flex-col itmes-center justify-center ">
         <h2 className="font-bold text-3xl p-4">
           Our <span className="text-heading">Services</span>
@@ -57,10 +57,10 @@ const Services = () => {
         {contents.map((items) => (
           <div
             key={items.id}
-            className="  m-4 p-10 flex flex-col gap-3 rounded text-white bg-color "
+            className="  m-4 p-10 flex flex-col gap-3 rounded  bg-zinc-200 "
           >
             <div>{items.icon}</div>
-            <h3 className="font-bold text-white">{items.title}</h3>
+            <h3 className="font-bold ">{items.title}</h3>
             <p>{items.description}</p>
 
             <ul>
