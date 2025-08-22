@@ -53,11 +53,11 @@ const Services = () => {
           requrements.
         </p>
       </div>
-      <div className="flex p-5 ">
+      <div className="flex p-5 overflow-x-scroll w-sceen ">
         {contents.map((items) => (
           <div
             key={items.id}
-            className="  m-4 p-10 flex flex-col gap-3 rounded  bg-zinc-200 "
+            className="  m-4 p-10 flex flex-col gap-3 rounded  bg-zinc-200  "
           >
             <div>{items.icon}</div>
             <h3 className="font-bold ">{items.title}</h3>

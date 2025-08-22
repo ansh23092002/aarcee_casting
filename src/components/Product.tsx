@@ -51,7 +51,7 @@ const Product = () => {
           satisfaction at every stage.
         </p>
       </div>
-      <div className=" grid grid-cols-3  p-10 ">
+      <div className=" grid md:grid-cols-3  p-10 ">
         {ProductItem.map((items) => (
           <div
             key={items.id}
