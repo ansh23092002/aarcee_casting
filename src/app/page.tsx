@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Services from "@/components/Services";
 import Product from "@/components/Product";
 import Quality from "@/components/Quality";
+import GetIntouch from "@/components/GetIntouch";
 export default function Home() {
   return (
    <div className="">
@@ -15,6 +16,7 @@ export default function Home() {
     <Services/>
     <Product/>
     <Quality/>
+    <GetIntouch/>
     <Footer/>
    </div>
   );
