@@ -12,7 +12,7 @@ const Index = () => {
         loop
         playsInline
         muted
-        className="opacity-20 scale-x-[-1] w-full h-screen"
+        className="opacity-90 scale-x-[-1] w-full h-screen"
         />
       </div>
       {/* window sceen  */}
@@ -23,7 +23,7 @@ const Index = () => {
         loop
         playsInline
         muted
-        className="  opacity-20 scale-x-[-1]"
+        className="  opacity-90 scale-x-[-1]"
         />
         </div>
       <div className="absolute bottom-30 p-4 md:top-1/3 text-white flex flex-col gap-6 m-5  ">

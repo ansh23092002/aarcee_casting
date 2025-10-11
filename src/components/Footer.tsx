@@ -1,52 +1,100 @@
-import React from "react";
-import { GrLinkedin } from "react-icons/gr";
-import { FaXTwitter } from "react-icons/fa6";
-const Footer = () => {
+'use client';
+import React, { useState } from "react";
+import Link from "next/link";
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/fa";
+import { TfiEmail } from "react-icons/tfi";
+
+const Footer: React.FC = () => {
+  const [email, setEmail] = useState("");
+
+
+  const submitNewsletter = (e: React.FormEvent) => {
+    e.preventDefault();
+    // placeholder - integrate with your newsletter provider
+    console.log("newsletter sign up", email);
+    setEmail("");
+    alert("Thanks! We'll keep you updated.");
+  };
+
   return (
-    <footer
-      id="footer"
-      className="bg-gray-800 text-white flex justify-between p-7 items-center p-4 flex-wrap"
-    >
-      <div className="flex flex-col items-center w-65">
-        <h4 className="font-bold">Contect Us</h4>
-        <div className="w-full">
-          <input type="email" placeholder="Enter your Email*" />
+    <footer className="bg-[#0b1820] text-white">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Stay Connected / Newsletter */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest">STAY CONNECTED</h3>
+            <p className="text-gray-300 mt-4 max-w-sm">
+              Join our newsletter for the latest updates and exclusive offers.
+            </p>
+
+            <form onSubmit={submitNewsletter} className="mt-6 flex items-center gap-2 max-w-sm">
+              <label htmlFor="footer-email" className="sr-only">Email</label>
+              <input
+                id="footer-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full px-4 py-3 rounded-md bg-[#07151a] border border-[#203039] text-gray-200 placeholder-gray-400 focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label="Subscribe"
+                className="p-3 rounded-md bg-gradient-to-r from-[#2b8a8a] to-[#0ea5a5] text-white hover:opacity-90"
+              >
+                <TfiEmail  className="w-5 h-5" />
+              </button>
+            </form>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest">QUICK LINKS</h3>
+            <ul className="mt-4 space-y-3 text-gray-300">
+              <li><Link href="/" className="hover:text-white">Home</Link></li>
+              <li><Link href="/about" className="hover:text-white">About Us</Link></li>
+              <li><a href="#services" className="hover:text-white">Services</a></li>
+              <li><Link href="/products" className="hover:text-white">Products</Link></li>
+              <li><a href="#contact" className="hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Contact Us */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest">CONTACT US</h3>
+            <div className="mt-4 text-gray-300 space-y-2">
+              <p>123 Innovation Street</p>
+              <p>Tech City, TC 12345</p>
+              <p>Phone: (123) 456-7890</p>
+              <a href="mailto:hello@example.com" className="underline hover:text-white">hello@example.com</a>
+            </div>
+          </div>
+
+          {/* Follow Us + Theme toggle */}
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest">FOLLOW US</h3>
+            <div className="mt-4 flex items-center gap-3">
+              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0f2730] hover:bg-[#142f38]"><FaFacebookF/></a>
+              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0f2730] hover:bg-[#142f38]"><FaTwitter/></a>
+              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0f2730] hover:bg-[#142f38]"><FaInstagram/></a>
+              <a href="#" className="w-9 h-9 rounded-full flex items-center justify-center bg-[#0f2730] hover:bg-[#142f38]"><FaLinkedinIn/></a>
+            </div>
+
+            
+          </div>
         </div>
-        <p>
-          {" "}
-          <span className="font-bold sold">Address:</span> Unnamed Road, Donde
-          Kala, Donde Khurd, Chhattisgarh 493111
-        </p>
       </div>
 
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">AarCee casting</h1>
-        <p>Where Quality Meets Innovation.</p>
-        <p>© 2025 Saadustu. All Rights Reserved.</p>
-        <h4>Follow Us</h4>
-        <div className="flex gap-5 p-2">
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <GrLinkedin />
-          </a>
-          <a href="" target="_blank" rel="noopener noreferrer">
-            <FaXTwitter />
-          </a>
-        </div>
-      </div>
-
-      <div className=" flex flex-col items-center w-65 gap-4">
-        <h4>Our Location</h4>
-        <div style={{ width: "100%", height: "200px" }} className="rounded-lg overflow-hidden">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3716.8220429165617!2d81.74713957526457!3d21.31804698040468!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28e9ce66b757cf%3A0x268f6fc2e66f823c!2sAar%20cee%20casting%20industries%20(Riddhi%20Ispat%20Industries)!5e0!3m2!1sen!2sin!4v1755411878147!5m2!1sen!2sin"
-            width="250"
-            height="200"
-            style={{border:0}}
-            // allowfullscreen=""
-            loading="lazy"
-            title="Google Map Location"
-                       
-          ></iframe>
+      {/* Bottom bar */}
+      <div className="border-t border-white/6">
+        <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between text-gray-400 text-sm">
+          <div>© {new Date().getFullYear()} Your Company. All rights reserved.</div>
+          <div className="flex items-center gap-6 mt-3 md:mt-0">
+            <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white">Terms of Service</Link>
+            <Link href="/cookies" className="hover:text-white">Cookie Settings</Link>
+          </div>
         </div>
       </div>
     </footer>
