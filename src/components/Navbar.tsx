@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { FiMenu as Menu, FiX as X } from "react-icons/fi";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
