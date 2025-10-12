@@ -1,52 +1,74 @@
 "use client";
-import { useState,useEffect } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+
+const animateNumber = (
+  start: number,
+  end: number,
+  durationMs: number,
+  onUpdate: (value: number) => void
+) => {
+  const startTime = performance.now();
+  const tick = (now: number) => {
+    const elapsed = now - startTime;
+    const progress = Math.min(1, elapsed / durationMs);
+    const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+    const value = Math.floor(start + (end - start) * eased);
+    onUpdate(value);
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+
 const GetIntouch = () => {
-  const [years, setyears] = useState(0);
-  const [clients, setclients] = useState(430);
-  const [projects, setprojects] = useState(970);
+  const [years, setYears] = useState(0);
+  const [clients, setClients] = useState(0);
+  const [projects, setProjects] = useState(0);
+  const hasAnimatedRef = useRef(false);
 
   useEffect(() => {
-    
-  setTimeout(() => {
-    if (years < 35) {
-      setyears(years + 1);
-    }
-    if (clients < 500) {
-      setclients(clients + 1);
-    }
-    if (projects < 1000) {
-      setprojects(projects + 1);
-    }
-  }, 30);
-  },    );
-  
+    if (hasAnimatedRef.current) return;
+    hasAnimatedRef.current = true;
+    animateNumber(0, 35, 1200, setYears);
+    animateNumber(430, 500, 1200, setClients);
+    animateNumber(970, 1000, 1200, setProjects);
+  }, []);
+
   return (
-    <section className="w-full  ">
-      <ul className="flex items-center w-screen justify-around p-2 ">
-        <li className=" items-center flex flex-col ">
-          <p className="font-bold text-yellow-300 lg:text-4xl">{years + "+"}</p>{" "}
-          <p>years of Experience</p>
+    <section id="contact" className="w-full">
+      <ul className="flex flex-wrap items-center justify-around gap-6 px-6 py-8">
+        <li className="flex flex-col items-center">
+          <p className="font-bold text-yellow-300 text-3xl lg:text-4xl">{years}+</p>
+          <p className="text-sm md:text-base">Years of Experience</p>
         </li>
-        <li className="items-center flex flex-col ">
-          <p className="font-bold text-yellow-300 lg:text-4xl">{clients + "+"}</p>{" "}
-          <p>clients</p>
+        <li className="flex flex-col items-center">
+          <p className="font-bold text-yellow-300 text-3xl lg:text-4xl">{clients}+</p>
+          <p className="text-sm md:text-base">Clients</p>
         </li>
-        <li className="items-center flex flex-col">
-          {" "}
-          <p className="font-bold text-yellow-300 lg:text-4xl">
-            {projects + "+"}{" "}
-          </p>{" "}
-          <p>projects completed</p>
+        <li className="flex flex-col items-center">
+          <p className="font-bold text-yellow-300 text-3xl lg:text-4xl">{projects}+</p>
+          <p className="text-sm md:text-base">Projects Completed</p>
         </li>
       </ul>
 
-      <div className=" w-full relative ">
-        <img src="/assets/companyimage.jpg" alt="company image" 
-        className="w-screen h-70 lg:h-100 " />
-        <div className="absolute  text-center text-white top-1/2 m-5">
-            <h4 className="font-bold lg:text-3xl"> Ready to Discuss  Your Projects</h4>
-            <p className="max-md:text-[10px]">Contact our team of experts to discuss your steel casting requirements and discover how Aarcee Casting can 
-                deliver the perfect solution for your needs. </p>
+      <div className="relative w-full">
+        <div className="relative h-72 md:h-96 w-full">
+          <Image
+            src="/assets/companyimage.jpg"
+            alt="Aarcee Casting company facility"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="mx-4 rounded-xl bg-black/40 px-5 py-4 text-center text-white backdrop-blur-sm">
+            <h4 className="font-bold text-lg md:text-2xl lg:text-3xl">Ready to Discuss Your Project?</h4>
+            <p className="mt-1 text-xs md:text-sm">
+              Contact our team of experts to discuss your steel casting requirements and discover how
+              Aarcee Casting can deliver the perfect solution for your needs.
+            </p>
+          </div>
         </div>
       </div>
     </section>

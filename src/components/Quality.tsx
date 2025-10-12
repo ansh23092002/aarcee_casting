@@ -8,76 +8,73 @@ const Quality = () => {
   const QualityList = [
     {
       id: "1",
-      icon: <FaMicroscope style={{ color: "yellow" }} />,
-      title: "Meterial Testing",
+      icon: <FaMicroscope className="text-yellow-400" />,
+      title: "Material Testing",
       description:
-        "Machanical porperty testing, and microstructure evaluation to ensure material integrity.",
+        "Mechanical property testing and microstructure evaluation to ensure material integrity.",
     },
     {
       id: "2",
-      icon: <SiExoscale style={{ color: "yellow" }} />,
+      icon: <SiExoscale className="text-yellow-400" />,
       title: "Dimensional Inspection",
       description:
-        "Advanced CMM technology and 3d scanning to verify dimensional accuracy and geometric tolerances.",
+        "Advanced CMM and 3D scanning to verify dimensional accuracy and geometric tolerances.",
     },
     {
       id: "3",
-      icon: <GiDistressSignal style={{ color: "yellow" }} />,
+      icon: <GiDistressSignal className="text-yellow-400" />,
       title: "Non-Destructive Testing",
       description:
-        "Ultrasonic, radiographic, and  magnetic particle inspection to detect internal  and surface defects.",
+        "Ultrasonic, radiographic, and magnetic particle inspection for internal and surface defects.",
     },
   ];
 
   return (
-    <div className="min-sm:flex  w-sceen h-full   p-6 md:p-20 gap-10 items-center justify-around">
-      <div className="  w-full flex flex-col gap-7">
-        <h1 className="text-4xl font-bold">
-          <span className="text-heading ">
-            {" "}
-            <u>Quality</u>
-          </span>{" "}
-          Aarcee Casting
-        </h1>
-        <div>
-          At Aarcee Casting, quality is at the core of everything we do. Our
-          comprehensive quality management system ensures that every casting
-          meets or exceeds industry standeds and customer specifications.
-          <br />
-        </div>
-        <div className=" ">
-          We employ rigorous testing and inspection protocols throughout the
-          production process, utilizing advanced technology to verify
-          dimensional accuracy, material integrity, and surface quality.
-        </div>
-        <div className="flex flex-row  gap-10  justify-items-start">
-          <div>
+    <section className="w-full px-6 py-12 md:px-20 md:py-20">
+      <div className="grid gap-10 md:grid-cols-2 items-center">
+        <div className="w-full flex flex-col gap-6">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            <span className="text-heading"><u>Quality</u></span> Aarcee Casting
+          </h2>
+          <p>
+            At Aarcee Casting, quality is at the core of everything we do. Our comprehensive
+            quality management system ensures that every casting meets or exceeds industry
+            standards and customer specifications.
+          </p>
+          <p>
+            We employ rigorous testing and inspection protocols throughout production, using
+            advanced technology to verify dimensional accuracy, material integrity, and
+            surface quality.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {QualityList.map((list) => (
               <div
                 key={list.id}
-                className="p-2 flex bg-zinc-200  m-3  rounded-2xl "
+                className="flex gap-3 rounded-xl border border-white/10 bg-[#0a131a] text-white p-4"
               >
-                <div className="m-3 size-5">{list.icon}</div>
+                <div className="text-2xl">{list.icon}</div>
                 <div>
-                  <h3 className="font-bold">{list.title}</h3>
-                  <p className="text-[12px]">{list.description}</p>
+                  <h3 className="font-semibold">{list.title}</h3>
+                  <p className="text-sm text-gray-300">{list.description}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
-      <div className="w-full   rounded-xl w-full overflow-hidden ">
-        {/* image */}
-        <Image
-          src="/assets/image/Quality.jpg"
-          width={600}
-          height={600}
-          alt="Picture of the author"
-        />
+        <div className="w-full overflow-hidden rounded-xl">
+          <Image
+            src="/assets/image/Quality.jpg"
+            width={1200}
+            height={900}
+            alt="Quality inspection at Aarcee Casting"
+            className="w-full h-auto object-cover"
+            priority
+          />
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
