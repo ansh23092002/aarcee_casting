@@ -1,73 +1,73 @@
 import React from "react";
+import Image from "next/image";
 
 const Product = () => {
   const ProductItem = [
     {
       id: "1",
       img: "/assets/image/RollingMill_cupling.jpg",
-      title: "Rolling Mill cupling",
-      description: "A Rolling Mill Coupling is a mechanical device used to connect two shafts together in rolling mills, ensuring efficient power transmission and smooth operation during metal forming processes.",
+      title: "Rolling Mill Coupling",
+      description:
+        "Connects shafts in rolling mills for efficient power transmission and smooth operation.",
     },
     {
       id: "2",
       img: "/assets/image/farns_rail.jpg",
-      title: "fernus rail",
-      description: "Our Fernus Rail is engineered for durability and high thermal resistance, making it ideal for use in industrial furnaces and heavy-duty rail applications. It ensures reliable performance under extreme conditions and supports efficient material handling.",
+      title: "Furnace Rail",
+      description:
+        "Engineered for durability and thermal resistance in industrial furnace applications.",
     },
     {
       id: "3",
       img: "/assets/image/HB_wire.jpg",
-      title: "HB wire",
-      description: "HB wire is a high-quality, versatile wire widely used in construction and industrial applications for binding, reinforcement, and fabrication due to its strength and flexibility.",
+      title: "HB Wire",
+      description:
+        "High-strength, flexible wire for binding, reinforcement, and fabrication needs.",
     },
     {
       id: "4",
       img: "/assets/image/Binding_wire.jpg",
-      title: "Binding wire",
-      description: "Binding wire is commonly used in construction for tying and securing rebar, mesh, and other structural elements, providing flexibility and strength for various binding applications.",
-    },
-    {
-      id: "5",
-      img: "/assets/image/Binding_wire.jpg",
-      title: "Binding wire",
-      description: "Binding wire is commonly used in construction for tying and securing rebar, mesh, and other structural elements, providing flexibility and strength for various binding applications.",
-    },
-    {
-      id: "6",
-      img: "/assets/image/Binding_wire.jpg",
-      title: "Binding wire",
-      description: "Binding wire is commonly used in construction for tying and securing rebar, mesh, and other structural elements, providing flexibility and strength for various binding applications.",
+      title: "Binding Wire",
+      description:
+        "Reliable tying solution for rebar, mesh, and other structural assemblies.",
     },
   ];
+
   return (
-    <div className=" w-full  ">
-      <div className=" flex-center flex-col itmes-center justify-center ">
-        <h2 className="font-bold text-3xl p-4">
+    <section className="w-full px-6 py-12 md:px-20 md:py-20">
+      <div className="flex-center flex-col text-center">
+        <h2 className="font-bold text-3xl md:text-4xl">
           Our <span className="text-heading">Products</span>
         </h2>
-        <p className="w-1/2 text-center">
-          We specialize in manufacturing high-quality products tailored to meet
-          diverse industry needs, ensuring reliability, precision, and customer
-          satisfaction at every stage.
+        <p className="max-w-2xl mt-3 text-gray-700">
+          We manufacture high‑quality products to meet diverse industry needs, with reliability and precision.
         </p>
       </div>
-      <div className=" grid md:grid-cols-3  p-10 ">
-        {ProductItem.map((items) => (
-          <div
-            key={items.id}
-            className="  m-4  flex flex-col gap-3 rounded  relative bg-black text-white"
-          >
-            <img src={items.img} alt="porduct image" className=" mask-b-from-5% mask-b-to-100% h-70" />
-            <div className="absolute top-35 p-5 ">
-              <h3 className="font-bold">{items.title}</h3>
-              <p className="text-[11px] my-2"> {items.description}</p>
-          </div>
-          </div>
 
-          
+      <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {ProductItem.map((item) => (
+          <article
+            key={item.id}
+            className="group relative overflow-hidden rounded-xl border border-white/10 bg-[#0a131a] text-white shadow-md"
+          >
+            <div className="relative h-56 w-full">
+              <Image
+                src={item.img}
+                alt={item.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                priority
+              />
+            </div>
+            <div className="p-5">
+              <h3 className="font-semibold">{item.title}</h3>
+              <p className="mt-2 text-sm text-gray-300">{item.description}</p>
+            </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
