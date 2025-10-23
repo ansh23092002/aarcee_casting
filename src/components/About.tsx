@@ -4,8 +4,8 @@ import Image from "next/image";
 
 const About = () => {
   return (
-    <section className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 md:p-12 lg:p-20 bg-gradient-to-br from-gray-50 to-white min-h-screen">
-      <div className="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <section id="about-section" className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 p-6 md:p-12 lg:p-20 bg-gradient-to-br from-[#F8EEDF] to-[#E8C999] min-h-screen">
+      <div className="w-full lg:w-1/2 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
         <Image
           src="/assets/image/Sand_Casting.jpg"
           width={700}
@@ -16,8 +16,8 @@ const About = () => {
       </div>
 
       <div className="w-full lg:w-1/2 flex flex-col gap-6 lg:gap-8">
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900">
-          <span className="text-heading underline decoration-4 underline-offset-4">About</span> Aarcee Casting
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-black">
+          <span className="text-[#8E1616] underline decoration-4 underline-offset-4">About</span> Aarcee Casting
         </h1>
 
         <p className="text-gray-700 leading-relaxed text-base md:text-lg">
@@ -28,7 +28,7 @@ const About = () => {
         </p>
 
         <div className="flex items-start gap-3">
-          <AiOutlineGlobal className="text-heading text-2xl mt-1 flex-shrink-0" />
+          <div className="text-[#8E1616] text-2xl mt-1 flex-shrink-0">🏭</div>
           <p className="text-gray-700 leading-relaxed text-base md:text-lg">
             From our advanced facilities in Donde Kala and Donde Khurd, Chhattisgarh,
             we produce a diverse range of products, such as precision CI castings
@@ -37,7 +37,7 @@ const About = () => {
         </div>
 
         <div className="flex items-start gap-3">
-          <AiFillSafetyCertificate className="text-heading text-2xl mt-1 flex-shrink-0" />
+          <div className="text-[#8E1616] text-2xl mt-1 flex-shrink-0">⭐</div>
           <p className="text-gray-700 leading-relaxed text-base md:text-lg">
             Our legacy is built on a perfected process that guarantees superior,
             consistent quality, flawless dimensional accuracy, and an outstanding
@@ -46,7 +46,7 @@ const About = () => {
         </div>
 
         <div className="flex items-start gap-3">
-          <AiOutlineTeam className="text-heading text-2xl mt-1 flex-shrink-0" />
+          <div className="text-[#8E1616] text-2xl mt-1 flex-shrink-0">👥</div>
           <p className="text-gray-700 leading-relaxed text-base md:text-lg">
             We combine modern manufacturing technology with strict quality control
             practices and a skilled workforce to deliver components that meet the
