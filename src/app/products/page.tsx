@@ -13,12 +13,12 @@ import {
 
 const ProductPage = () => {
 	const categories = [
-		{ id: "gray-cast-iron", name: "Gray Cast Iron Products", data: grayCastIronProducts },
-		{ id: "high-manganese", name: "High Manganese Steel", data: High_Manganese_Steel },
-		{ id: "steel-casting", name: "Steel Casting", data: Steel_Casting },
-		{ id: "alloy-steel", name: "Alloy Steel", data: Alloy_Steel },
+		{ id: "gray-cast-iron", name: "Gray Cast Iron Products Casting", data: grayCastIronProducts },
+		{ id: "high-manganese", name: "High Manganese Steel Casting ", data: High_Manganese_Steel },
+		{ id: "steel-casting", name: "Steel Casting Casting ", data: Steel_Casting },
+		{ id: "alloy-steel", name: "Alloy Steel Casting ", data: Alloy_Steel },
 		{ id: "rolling-mill", name: "Rolling Mill Casting", data: Rolling_Mill_Casting },
-		{ id: "machine-workshop", name: "Machine Workshop", data: Machine_Workshop },
+		{ id: "machine-workshop", name: "Machine Workshop Casting ", data: Machine_Workshop },
 	];
 
 	const searchParams = useSearchParams();
@@ -105,7 +105,6 @@ const ProductPage = () => {
 								<p className="text-gray-600 mt-2 text-sm">{p.description}</p>
 								<div className="mt-4 flex items-center justify-between">
 									<span className="text-xs text-gray-500">{p.category}</span>
-									<button className="bg-blue-600 text-white px-3 py-1 rounded text-sm">Request Quote</button>
 								</div>
 							</div>
 						</article>
