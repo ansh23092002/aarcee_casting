@@ -6,6 +6,12 @@ const GetIntouch = () => {
   const [years, setYears] = useState(0);
   const [clients, setClients] = useState(430);
   const [projects, setProjects] = useState(970);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -21,6 +27,28 @@ const GetIntouch = () => {
     }, 30);
     return () => clearTimeout(interval);
   }, [years, clients, projects]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // For now, just log the form data. In a real app, you'd send this to a backend
+    console.log('Form submitted:', formData);
+    alert('Thank you for your message! We will get back to you soon.');
+    // Reset form
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+  };
 
   return (
     <section id="contact" className="w-full bg-gradient-to-br from-black via-[#8E1616] to-black">
@@ -78,6 +106,96 @@ const GetIntouch = () => {
               Get In Touch
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Contact Form Section */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Contact Us
+            </h3>
+            <p className="text-[#F8EEDF] text-lg md:text-xl">
+              Fill out the form below and we'll get back to you as soon as possible.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="bg-gradient-to-br from-[#F8EEDF] to-[#E8C999] p-6 md:p-8 rounded-2xl shadow-xl border border-[#8E1616]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label htmlFor="name" className="block text-[#8E1616] font-semibold mb-2">
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
+                  placeholder="Your full name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-[#8E1616] font-semibold mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="phone" className="block text-[#8E1616] font-semibold mb-2">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
+                placeholder="+1 (555) 123-4567"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="message" className="block text-[#8E1616] font-semibold mb-2">
+                Message *
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+                rows={5}
+                className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500 resize-vertical"
+                placeholder="Tell us about your project requirements..."
+              />
+            </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-xl"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </section>

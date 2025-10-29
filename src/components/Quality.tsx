@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { FaMicroscope } from "react-icons/fa";
-import { SiExoscale } from "react-icons/si";
+import { FaMicroscope, FaFlask } from "react-icons/fa";
 import { GiDistressSignal } from "react-icons/gi";
 
 const Quality = () => {
@@ -15,10 +14,10 @@ const Quality = () => {
     },
     {
       id: "2",
-      icon: <SiExoscale className="text-[#8E1616] text-3xl" />,
-      title: "Dimensional Inspection",
+      icon: <FaFlask className="text-[#8E1616] text-3xl" />,
+      title: "spectro material teasting",
       description:
-        "Advanced CMM technology and 3D scanning to verify dimensional accuracy and geometric tolerances.",
+        "Advanced spectro material testing technology to verify material composition and ensure quality standards.",
     },
     {
       id: "3",

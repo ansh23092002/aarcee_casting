@@ -10,6 +10,8 @@ import {
 	Rolling_Mill_Casting,
 	Machine_Workshop,
 } from "../../Data/index";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const ProductPage = () => {
 	const categories = [
@@ -57,7 +59,9 @@ const ProductPage = () => {
 	};
 
 	return (
-		<div className="min-h-screen bg-gradient-to-br from-[#F8EEDF] via-white to-[#F8EEDF] py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+		<>
+			<Navbar />
+			<div className="min-h-screen bg-gradient-to-br from-[#F8EEDF] via-white to-[#F8EEDF] py-20 md:py-24 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-7xl mx-auto">
 				<header className="text-center mb-12 md:mb-16">
 					<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-4">
@@ -166,7 +170,10 @@ const ProductPage = () => {
 					</div>
 				)}
 			</div>
+		
 		</div>
+		<Footer />
+		</>
 	);
 };
 
