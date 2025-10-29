@@ -14,7 +14,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <section id="about">
-        <About />
+        <About showTeam={false} />
       </section>
       <section id="services">
         <Services />

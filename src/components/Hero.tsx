@@ -36,12 +36,12 @@ const Index = () => {
             Delivering exceptional quality steel casting with cutting-edge technology and decades of expertise.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start mb-12">
-            <button className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg flex items-center justify-center gap-2 transition duration-300 hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 shadow-lg text-sm sm:text-base">
+            <a href="#contact" className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg flex items-center justify-center gap-2 transition duration-300 hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 shadow-lg text-sm sm:text-base">
               Request a Quote <FaArrowRight />
-            </button>
-            <button className="border-2 border-[#E8C999] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition duration-300 text-sm sm:text-base">
+            </a>
+            <a href="/about" className="border-2 border-[#E8C999] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 sm:py-3 px-6 sm:px-8 rounded-lg transition duration-300 text-sm sm:text-base">
               Learn More
-            </button>
+            </a>
           </div>
           
         </div>

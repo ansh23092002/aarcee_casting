@@ -12,6 +12,9 @@ const GetIntouch = () => {
     phone: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     const interval = setTimeout(() => {
@@ -36,18 +39,40 @@ const GetIntouch = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just log the form data. In a real app, you'd send this to a backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: ''
-    });
+    setIsSubmitting(true);
+    setSubmitMessage('');
+    setSubmitError('');
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage(data.message);
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        setSubmitError(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      setSubmitError('Network error. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -102,15 +127,15 @@ const GetIntouch = () => {
             <p className="text-sm md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 text-[#F8EEDF]">
               Contact our team of experts to discuss your steel casting requirements and discover how Aarcee Casting can deliver the perfect solution for your needs.
             </p>
-            <button className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 transition-all duration-300 shadow-xl">
+            <a href="#contact-form" className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 transition-all duration-300 shadow-xl">
               Get In Touch
-            </button>
+            </a>
           </div>
         </div>
       </div>
 
       {/* Contact Form Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div id="contact-form" className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8 md:mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -120,6 +145,18 @@ const GetIntouch = () => {
               Fill out the form below and we'll get back to you as soon as possible.
             </p>
           </div>
+
+          {submitMessage && (
+            <div className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-300 text-center">
+              {submitMessage}
+            </div>
+          )}
+
+          {submitError && (
+            <div className="mb-6 p-4 bg-red-500/20 border border-red-500 rounded-lg text-red-300 text-center">
+              {submitError}
+            </div>
+          )}
 
           <form onSubmit={handleSubmit} className="bg-gradient-to-br from-[#F8EEDF] to-[#E8C999] p-6 md:p-8 rounded-2xl shadow-xl border border-[#8E1616]">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -134,6 +171,7 @@ const GetIntouch = () => {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
                   placeholder="Your full name"
                 />
@@ -150,6 +188,7 @@ const GetIntouch = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
+                  disabled={isSubmitting}
                   className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
                   placeholder="your.email@example.com"
                 />
@@ -166,6 +205,7 @@ const GetIntouch = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleInputChange}
+                disabled={isSubmitting}
                 className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500"
                 placeholder="+1 (555) 123-4567"
               />
@@ -181,6 +221,7 @@ const GetIntouch = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 required
+                disabled={isSubmitting}
                 rows={5}
                 className="w-full px-4 py-3 border border-[#8E1616]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#8E1616] focus:border-transparent bg-white/90 text-gray-800 placeholder-gray-500 resize-vertical"
                 placeholder="Tell us about your project requirements..."
@@ -190,9 +231,10 @@ const GetIntouch = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-xl"
+                disabled={isSubmitting}
+                className="bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </div>
           </form>
