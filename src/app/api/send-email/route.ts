@@ -22,52 +22,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // In production, integrate with email service like:
-    // - Nodemailer
-    // - SendGrid
-    // - Resend
-    // - AWS SES
-    
-    // For now, log the data (replace with actual email sending)
-    console.log('Contact form submission:', {
-      name,
-      email,
-      phone: phone || 'Not provided',
-      message,
-      timestamp: new Date().toISOString()
-    });
-
-    // Simulate email sending delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-
-    // Example with Nodemailer (uncomment and configure when ready):
-    /*
+    // Send email using Nodemailer
     const nodemailer = require('nodemailer');
     
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      secure: true,
+      service: 'gmail',
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER || 'your-email@gmail.com',
+        pass: process.env.SMTP_PASS || 'your-app-password',
       },
     });
 
     await transporter.sendMail({
-      from: process.env.SMTP_FROM,
-      to: process.env.CONTACT_EMAIL,
+      from: process.env.SMTP_USER || 'your-email@gmail.com',
+      to: 'anshshrama60oo@gmail.com',
       subject: `New Contact Form Submission from ${name}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #8E1616; border-bottom: 3px solid #E8C999; padding-bottom: 10px;">
+            New Contact Form Submission
+          </h2>
+          <div style="background-color: #F8EEDF; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+            <p><strong>Message:</strong></p>
+            <p style="background-color: white; padding: 15px; border-radius: 5px;">${message}</p>
+          </div>
+          <p style="color: #666; font-size: 12px; margin-top: 30px;">
+            Received on: ${new Date().toLocaleString()}
+          </p>
+        </div>
       `,
     });
-    */
 
     return NextResponse.json(
       { 

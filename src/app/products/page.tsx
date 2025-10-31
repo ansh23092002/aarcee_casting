@@ -12,8 +12,11 @@ import {
 } from "../../Data/index";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import QuotationModal from "@/components/QuotationModal";
+import { FaArrowUp } from "react-icons/fa";
 
 const ProductPage = () => {
+	const [showScrollTop, setShowScrollTop] = useState(false);
 	const categories = [
 		{ id: "gray-cast-iron", name: "Gray Cast Iron Products Casting", data: grayCastIronProducts },
 		{ id: "high-manganese", name: "High Manganese Steel Casting ", data: High_Manganese_Steel },
@@ -28,12 +31,31 @@ const ProductPage = () => {
 
 	const [activeCategory, setActiveCategory] = useState("all");
 	const [searchTerm, setSearchTerm] = useState("");
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState<{
+		name: string;
+		category: string;
+	} | null>(null);
 
 	// sync from URL
 	useEffect(() => {
 		const q = searchParams?.get("category") ?? "all";
 		if (q) setActiveCategory(q);
 	}, [searchParams]);
+
+	// Scroll to top button logic
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 300) {
+				setShowScrollTop(true);
+			} else {
+				setShowScrollTop(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	// Flatten products
 	const allProducts = useMemo(() => {
@@ -56,6 +78,26 @@ const ProductPage = () => {
 		const params = new URLSearchParams(Array.from(searchParams!.entries()));
 		if (id === "all") params.delete("category"); else params.set("category", id);
 		router.push(`/products?${params.toString()}`);
+	};
+
+	// Open quotation modal
+	const openQuotationModal = (productName: string, category: string) => {
+		setSelectedProduct({ name: productName, category });
+		setIsModalOpen(true);
+	};
+
+	// Close quotation modal
+	const closeQuotationModal = () => {
+		setIsModalOpen(false);
+		setSelectedProduct(null);
+	};
+
+	// Scroll to top function
+	const scrollToTop = () => {
+		window.scrollTo({
+			top: 0,
+			behavior: "smooth",
+		});
 	};
 
 	return (
@@ -152,10 +194,18 @@ const ProductPage = () => {
 								<p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4 line-clamp-3">
 									{p.description}
 								</p>
-								<div className="flex items-center justify-between pt-3 border-t border-[#E8C999]">
-									<span className="text-xs md:text-sm text-[#8E1616] font-semibold bg-[#E8C999]/20 px-3 py-1 rounded-full">
-										{p.category}
-									</span>
+								<div className="pt-3 border-t border-[#E8C999] space-y-3">
+									<div className="flex items-center justify-between">
+										<span className="text-xs md:text-sm text-[#8E1616] font-semibold bg-[#E8C999]/20 px-3 py-1 rounded-full">
+											{p.category}
+										</span>
+									</div>
+									<button
+										onClick={() => openQuotationModal(p.name, p.category)}
+										className="w-full bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-4 py-2.5 rounded-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-lg"
+									>
+										Request Quotation
+									</button>
 								</div>
 							</div>
 						</article>
@@ -173,6 +223,27 @@ const ProductPage = () => {
 		
 		</div>
 		<Footer />
+
+		{/* Quotation Modal */}
+		{selectedProduct && (
+			<QuotationModal
+				isOpen={isModalOpen}
+				onClose={closeQuotationModal}
+				productName={selectedProduct.name}
+				productCategory={selectedProduct.category}
+			/>
+		)}
+
+		{/* Scroll to Top Button - Mobile Only */}
+		{showScrollTop && (
+			<button
+				onClick={scrollToTop}
+				className="block md:hidden fixed bottom-8 right-6 z-[9999] bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white p-4 rounded-full shadow-2xl hover:from-[#B91C1C] hover:to-[#8E1616] transition-all duration-300"
+				aria-label="Scroll to top"
+			>
+				<FaArrowUp className="text-xl" />
+			</button>
+		)}
 		</>
 	);
 };
