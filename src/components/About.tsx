@@ -10,13 +10,13 @@ interface AboutProps {
 const About: React.FC<AboutProps> = ({ showTeam = true }) => {
   const teamMembers = [
     {
-      name: "Rajesh Kumar",
-      designation: "Founder & CEO",
+      name: "Yogesh Gupta",
+      designation: "Founder ",
       image: "/assets/image/team-member-1.jpg",
       description: "Leading innovation in casting technology since 1985"
     },
     {
-      name: "Priya Sharma",
+      name: "Aaditya Gupta",
       designation: "Chief Operating Officer",
       image: "/assets/image/team-member-2.jpg",
       description: "Ensuring excellence in operations and quality"

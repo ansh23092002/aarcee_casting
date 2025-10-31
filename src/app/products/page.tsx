@@ -38,7 +38,7 @@ const ProductPage = () => {
 	// Flatten products
 	const allProducts = useMemo(() => {
 		return categories.flatMap((c) => c.data.map((p) => ({ ...p, category: c.name, categoryId: c.id })));
-	}, []);
+	}, [categories]);
 
 	const filtered = useMemo(() => {
 		let list = allProducts;
@@ -53,7 +53,7 @@ const ProductPage = () => {
 	// helper to change category and update URL
 	const goToCategory = (id: string) => {
 		setActiveCategory(id);
-		const params = new URLSearchParams(Array.from(searchParams.entries()));
+		const params = new URLSearchParams(Array.from(searchParams!.entries()));
 		if (id === "all") params.delete("category"); else params.set("category", id);
 		router.push(`/products?${params.toString()}`);
 	};

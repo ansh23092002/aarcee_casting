@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           <div className="flex items-center gap-4">
             <Link href="/" className="text-xl md:text-2xl font-extrabold text-white hover:scale-105 transition-transform">
-              Aarcee <span className="text-[#E8C999]">Casting</span>
+              AarCee <span className="text-[#E8C999]">Casting</span>
             </Link>
           </div>
 
@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
               About Us
             </Link>
             <a 
-              href="#contact" 
+              href="#contact-form" 
               className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black px-6 py-2 rounded-full font-bold hover:from-[#F8EEDF] hover:to-[#E8C999] transition-all transform hover:scale-105 shadow-lg"
             >
               Contact
@@ -83,7 +83,7 @@ const Navbar: React.FC = () => {
               About Us
             </Link>
             <a 
-              href="#contact" 
+              href="#contact-form" 
               className="block bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black px-6 py-3 rounded-full font-bold text-center hover:from-[#F8EEDF] hover:to-[#E8C999] transition-all"
               onClick={() => setOpen(false)}
             >

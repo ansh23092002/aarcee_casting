@@ -68,7 +68,7 @@ const GetIntouch = () => {
       } else {
         setSubmitError(data.error || 'Failed to send message');
       }
-    } catch (error) {
+    } catch (_error) {
       setSubmitError('Network error. Please try again later.');
     } finally {
       setIsSubmitting(false);
@@ -142,7 +142,7 @@ const GetIntouch = () => {
               Contact Us
             </h3>
             <p className="text-[#F8EEDF] text-lg md:text-xl">
-              Fill out the form below and we'll get back to you as soon as possible.
+              Fill out the form below and we&apos;ll get back to you as soon as possible.
             </p>
           </div>
 
