@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
 
     // Send confirmation email to customer
     await transporter.sendMail({
-      from: process.env.SMTP_USER || 'your-email@gmail.com',
+      from: process.env.SMTP_USER ,
       to: email,
       subject: `Quotation Request Received - ${productName}`,
       html: `

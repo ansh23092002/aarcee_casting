@@ -76,11 +76,11 @@ const GetIntouch = () => {
   };
 
   return (
-    <section id="contact" className="w-full bg-gradient-to-br from-black via-[#8E1616] to-black">
+    <section id="contact" className="w-full bg-gradient-to-br from-black via-[#8E1616] to-black  ">
       {/* Stats Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            <div className="flex flex-col items-center text-center p-6 md:p-8 bg-gradient-to-br from-[#F8EEDF] to-[#E8C999] rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border border-[#8E1616]">
+      <div className="container mx-20 px-4 sm:px-6 lg:px-8 py-12 md:py-12 rounded-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12  ">
+            <div className="flex  flex-col items-center text-center p-6 md:p-8 bg-gradient-to-br from-[#F8EEDF] to-[#E8C999] rounded-2xl shadow-xl transform hover:scale-105 transition-all duration-300 border border-[#8E1616]">
             <FaTrophy className="text-[#8E1616] text-5xl md:text-6xl mb-4" />
             <p className="font-bold text-[#8E1616] text-4xl md:text-5xl mb-2">
               {years}+
