@@ -40,7 +40,7 @@ const About: React.FC<AboutProps> = ({ showTeam = true }) => {
 
         <div className="w-full lg:w-3/5 flex flex-col gap-5 md:gap-6 lg:gap-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight text-black">
-            <span className="text-[#8E1616] underline decoration-2 md:decoration-4 underline-offset-4">About</span> Aarcee Casting Industries
+            <span className="text-[#8E1616] underline decoration-2 md:decoration-4 underline-offset-4">About</span> Us
           </h1>
 
           <p className="text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">

@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Product from "@/components/Product";
+import Stats from "@/components/Stats";
 import Quality from "@/components/Quality";
 import GetIntouch from "@/components/GetIntouch";
 import { FaArrowUp } from "react-icons/fa";
@@ -47,6 +48,7 @@ export default function Home() {
         <section id="products">
           <Product />
         </section>
+        <Stats />
         <section id="quality">
           <Quality />
         </section>

@@ -39,7 +39,7 @@ const Index = () => {
             <a href="#contact" className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg flex items-center justify-center gap-1 sm:gap-2 transition duration-300 hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 shadow-lg text-xs sm:text-base">
               Request a Quote <FaArrowRight className="text-xs sm:text-base" />
             </a>
-            <a href="/about" className="border-2 border-[#E8C999] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg transition duration-300 text-xs sm:text-base">
+            <a href="/about" className="border-2 border-[ ] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg transition duration-300 text-xs sm:text-base">
               Learn More
             </a>
           </div>

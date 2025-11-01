@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-br from-black via-[#8E1616] to-black text-white">
+    <footer className="bg-black text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
           {/* Stay Connected / Newsletter */}
@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
             <h3 className="text-sm md:text-base font-bold tracking-widest mb-4 text-[#E8C999]">
               STAY CONNECTED
             </h3>
-            <p className="text-[#F8EEDF] text-sm md:text-base leading-relaxed mb-6">
+            <p className="text-white text-sm md:text-base leading-relaxed mb-6">
               Join our newsletter for the latest updates and exclusive offers.
             </p>
 
@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
             <h3 className="text-sm md:text-base font-bold tracking-widest mb-4 text-[#E8C999]">
               QUICK LINKS
             </h3>
-            <ul className="space-y-3 text-[#F8EEDF] text-sm md:text-base">
+            <ul className="space-y-3 text-white text-sm md:text-base">
               <li>
                 <Link href="/" className="hover:text-[#E8C999] transition-colors inline-block">
                   Home
@@ -88,7 +88,7 @@ const Footer: React.FC = () => {
             <h3 className="text-sm md:text-base font-bold tracking-widest mb-4 text-[#E8C999]">
               CONTACT US
             </h3>
-            <div className="space-y-4 text-[#F8EEDF] text-sm md:text-base">
+            <div className="space-y-4 text-white text-sm md:text-base">
               <div className="flex items-start gap-3">
                 <HiLocationMarker className="text-[#E8C999] text-xl flex-shrink-0 mt-1" />
                 <div>
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-3">
                 <HiMail className="text-[#E8C999] text-xl flex-shrink-0" />
-                <a href="mailto:aarceeCasting.Industries@gmail.com" className="hover:text-[#F8EEDF] transition-colors">
+                <a href="mailto:aarceeCasting.Industries@gmail.com" className="hover:text-[#E8C999] transition-colors">
                   aarceeCasting.Industries@gmail.com
                 </a>
               </div>
@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
                 <FaLinkedinIn />
               </a>
             </div>
-            <p className="text-[#F8EEDF] text-sm leading-relaxed">
+            <p className="text-white text-sm leading-relaxed">
               Connect with us on social media for industry insights and company updates.
             </p>
           </div>
