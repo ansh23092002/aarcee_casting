@@ -55,7 +55,7 @@ const About: React.FC<AboutProps> = ({ showTeam = true }) => {
             <p className="text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
               Operating from our state-of-the-art manufacturing facilities in <strong>Donde Kala</strong> and <strong>Donde Khurd, Chhattisgarh</strong>, 
               we produce an extensive range of <strong>precision CI (Cast Iron) castings</strong>, <strong>steel castings</strong>, 
-              and <strong>metal ingots</strong>. Every product is meticulously engineered to meet stringent industry specifications 
+              and <strong>steel casting</strong>. Every product is meticulously engineered to meet stringent industry specifications 
               and customer requirements.
             </p>
           </div>
