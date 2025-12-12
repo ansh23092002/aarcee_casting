@@ -117,28 +117,28 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3 mb-6">
               <a 
                 href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-[#F8EEDF] hover:bg-[#E8C999] hover:text-black transition-all transform hover:scale-110"
+                className="w-10 h-10 rounded-full flex items-center justify-center  bg-[#E8C999] hover:bg-[#F8EEDF] text-black hover:text-black transition-all transform hover:scale-110"
                 aria-label="Facebook"
               >
                 <FaFacebookF />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-[#F8EEDF] hover:bg-[#E8C999] hover:text-black transition-all transform hover:scale-110"
+                className="w-10 h-10 rounded-full flex items-center justify-center  bg-[#E8C999] hover:bg-[#F8EEDF] text-black transition-all transform hover:scale-110"
                 aria-label="Twitter"
               >
                 <FaTwitter />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-[#F8EEDF] hover:bg-[#E8C999] hover:text-black transition-all transform hover:scale-110"
+                className="w-10 h-10 rounded-full flex items-center justify-center  bg-[#E8C999] hover:bg-[#F8EEDF] text-black transition-all transform hover:scale-110"
                 aria-label="Instagram"
               >
                 <FaInstagram />
               </a>
               <a 
                 href="#" 
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-[#F8EEDF] hover:bg-[#E8C999] hover:text-black transition-all transform hover:scale-110"
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-[#E8C999] hover:bg-[#F8EEDF] text-black transition-all transform hover:scale-110"
                 aria-label="LinkedIn"
               >
                 <FaLinkedinIn />
