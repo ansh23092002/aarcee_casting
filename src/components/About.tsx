@@ -53,7 +53,7 @@ const About: React.FC<AboutProps> = ({ showTeam = true }) => {
           <div className="flex items-start gap-3">
             <AiOutlineGlobal className="text-[#8E1616] text-xl md:text-2xl mt-1 flex-shrink-0" />
             <p className="text-gray-700 leading-relaxed text-sm sm:text-base md:text-lg">
-              Operating from our state-of-the-art manufacturing facilities in <strong>Donde Kala</strong> and <strong>Donde Khurd, Chhattisgarh</strong>, 
+              Operating from our state-of-the-art manufacturing facilities in <strong>Donde Khurd, Chhattisgarh</strong>, 
               we produce an extensive range of <strong>precision CI (Cast Iron) castings</strong>, <strong>steel castings</strong>, 
               and <strong>steel casting</strong>. Every product is meticulously engineered to meet stringent industry specifications 
               and customer requirements.
