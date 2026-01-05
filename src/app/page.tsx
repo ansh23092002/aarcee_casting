@@ -1,18 +1,40 @@
 "use client";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
-import React, { useState, useEffect } from "react";
-import Footer from "@/components/Footer";
-import About from "@/components/About";
-import Services from "@/components/Services";
-import Product from "@/components/Product";
-import Stats from "@/components/Stats";
-import Quality from "@/components/Quality";
-import GetIntouch from "@/components/GetIntouch";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { FaArrowUp } from "react-icons/fa";
+
+// Lazy load heavy components
+const Footer = lazy(() => import("@/components/Footer"));
+const About = lazy(() => import("@/components/About"));
+const Services = lazy(() => import("@/components/Services"));
+const Product = lazy(() => import("@/components/Product"));
+const Stats = lazy(() => import("@/components/Stats"));
+const Quality = lazy(() => import("@/components/Quality"));
+const GetIntouch = lazy(() => import("@/components/GetIntouch"));
+
+// Loading fallback
+const SectionLoader = () => (
+  <div className="min-h-[200px] flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8E1616]"></div>
+  </div>
+);
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Handle hash scroll on page load
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,7 +45,7 @@ export default function Home() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -39,21 +61,35 @@ export default function Home() {
       <div className="overflow-x-hidden">
         <Navbar />
         <Hero />
-        <section id="about">
-          <About showTeam={false} />
-        </section>
-        <section id="services">
-          <Services />
-        </section>
-        <section id="products">
-          <Product />
-        </section>
-        <Stats />
-        <section id="quality">
-          <Quality />
-        </section>
-        <GetIntouch />
-        <Footer />
+        <Suspense fallback={<SectionLoader />}>
+          <section id="about">
+            <About showTeam={false} showFullContent={false} />
+          </section>
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <section id="services">
+            <Services />
+          </section>
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <section id="products">
+            <Product />
+          </section>
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <Stats />
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <section id="quality">
+            <Quality />
+          </section>
+        </Suspense>
+        <Suspense fallback={<SectionLoader />}>
+          <GetIntouch />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Footer />
+        </Suspense>
       </div>
 
       {/* Scroll to Top Button - Mobile Only */}

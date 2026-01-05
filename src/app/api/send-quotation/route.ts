@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
@@ -33,8 +34,6 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email using Nodemailer
-    const nodemailer = require('nodemailer');
-    
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {

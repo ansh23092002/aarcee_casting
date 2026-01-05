@@ -57,10 +57,10 @@ const GetIntouch = () => {
   };
 
   return (
-    <section id="contact" className="w-full bg-gradient-to-br from-black via-[#8E1616] to-black  ">
+    <section id="contact" className="w-full bg-gradient-to-br from-black via-[#8E1616] to-black">
 
       {/* CTA Section with Image */}
-      <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
+      <div className="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] min-h-[400px]">
         <img
           src="/assets/companyimage.jpg"
           alt="Aarcee Casting facility"
@@ -74,7 +74,14 @@ const GetIntouch = () => {
             <p className="text-sm md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 text-[#F8EEDF]">
               Contact our team of experts to discuss your steel casting requirements and discover how Aarcee Casting can deliver the perfect solution for your needs.
             </p>
-            <a href="#contact-form" className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 transition-all duration-300 shadow-xl">
+            <a 
+              href="#contact-form" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-bold px-8 md:px-12 py-3 md:py-4 rounded-full text-base md:text-lg hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 transition-all duration-300 shadow-xl cursor-pointer"
+            >
               Get In Touch
             </a>
           </div>
@@ -82,9 +89,9 @@ const GetIntouch = () => {
       </div>
 
       {/* Contact Form Section */}
-      <div id="contact-form" className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+      <div id="contact-form" className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-16">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
+          <div className="text-center mb-6 sm:mb-8 md:mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Contact Us
             </h3>

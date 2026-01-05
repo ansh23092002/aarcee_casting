@@ -1,0 +1,27 @@
+{
+  "name": "Aarcee Casting Industries",
+  "short_name": "Aarcee Casting",
+  "description": "Premier steel casting manufacturer in Raipur, Chhattisgarh since 1985",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8E1616",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/image/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/image/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "manufacturing", "industrial"],
+  "lang": "en-IN",
+  "dir": "ltr"
+}

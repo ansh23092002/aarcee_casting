@@ -5,11 +5,17 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -89,10 +95,49 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="canonical" href="https://www.aarceecasting.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preload" href="/assets/background.mp4" as="video" type="video/mp4" />
+        <link rel="preload" href="/assets/background_video.mp4" as="video" type="video/mp4" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/assets/image/logo.png" />
+        <link rel="apple-touch-icon" href="/assets/image/logo.png" />
         <meta name="geo.region" content="IN-CT" />
         <meta name="geo.placename" content="Raipur, Chhattisgarh" />
         <meta name="geo.position" content="21.2514;81.6296" />
         <meta name="ICBM" content="21.2514, 81.6296" />
+        <meta name="theme-color" content="#8E1616" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Aarcee Casting Industries",
+              "url": "https://www.aarceecasting.com",
+              "logo": "https://www.aarceecasting.com/assets/image/logo.png",
+              "description": "Premier manufacturer of high-quality steel castings, ferrous & non-ferrous castings since 1985 in Raipur, Chhattisgarh",
+              "foundingDate": "1985",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Raipur",
+                "addressRegion": "Chhattisgarh",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "21.2514",
+                "longitude": "81.6296"
+              },
+              "sameAs": [
+                "https://www.facebook.com/aarceecasting",
+                "https://www.linkedin.com/company/aarcee-casting"
+              ]
+            })
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

@@ -32,8 +32,8 @@ const AboutPage = () => {
     <>
       <div className="min-h-screen flex flex-col">
         <Navbar />
-        <main className="flex-1">
-          <About />
+        <main className="flex-1 pt-14 md:pt-16 bg-gray-50">
+          <About showTeam={true} />
         </main>
         <Footer />
 

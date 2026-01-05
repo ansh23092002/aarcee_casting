@@ -12,29 +12,29 @@ import {
 } from "../Data/index";
 
 const categories = [
-  { id: "gray-cast-iron", name: "Gray Cast Iron Products Casting", data: grayCastIronProducts },
-  { id: "high-manganese", name: "High Manganese Steel Casting ", data: High_Manganese_Steel },
+  { id: "gray-cast-iron", name: "Gray Cast Iron Products", data: grayCastIronProducts },
+  { id: "high-manganese", name: "High Manganese Steel", data: High_Manganese_Steel },
   { id: "steel-casting", name: "Steel Casting", data: Steel_Casting },
-  { id: "alloy-steel", name: "Alloy Steel Casting ", data: Alloy_Steel },
+  { id: "alloy-steel", name: "Alloy Steel", data: Alloy_Steel },
   { id: "rolling-mill", name: "Rolling Mill Casting", data: Rolling_Mill_Casting },
-  { id: "machine-workshop", name: "Machine Workshop Casting ", data: Machine_Workshop },
+  { id: "machine-workshop", name: "Machine Workshop", data: Machine_Workshop },
 ];
 
 const Product = () => {
   return (
-    <div className="w-full py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[#F8EEDF] to-[#E8C999]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center justify-center mb-12">
-          <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-center mb-4 text-black">
+    <div className="w-full py-10 sm:py-12 md:py-16 lg:py-20 bg-gradient-to-b from-[#F8EEDF] to-[#E8C999] min-h-screen flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col items-center justify-center mb-8 sm:mb-10 md:mb-12">
+          <h2 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center mb-3 sm:mb-4 text-black">
             Our <span className="text-[#8E1616]">Products</span>
           </h2>
-          <p className="max-w-3xl text-center text-gray-600 text-base md:text-lg leading-relaxed px-4">
+          <p className="max-w-3xl text-center text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed px-4">
             We specialize in manufacturing high-quality products tailored to meet diverse industry needs. Click a
             classification below to view categorized products on the product page.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {categories.map((cat) => {
           // map category id -> existing .webp file names in public/assets/image/categories/
           const categoryFiles: Record<string, string> = {
@@ -54,15 +54,18 @@ const Product = () => {
               key={cat.id} 
               href={`/products?category=${cat.id}`} 
               className="block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+              aria-label={`View ${cat.name} products`}
             >
-              <div className="relative h-56 md:h-64 bg-gray-100">
+              <article className="relative h-48 sm:h-56 md:h-64 bg-gray-100">
                 {/* use the dedicated category .webp if present, else fallback to first product image */}
                 <Image
                   src={bg}
-                  alt={`${cat.name} background`}
+                  alt={`${cat.name} - Industrial casting products and components`}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  loading="lazy"
+                  quality={85}
                   onError={(e) => {
                     // next/image forwards onError from the underlying <img>
                     try {
@@ -78,7 +81,7 @@ const Product = () => {
                     {cat.name}
                   </h3>
                 </div>
-              </div>
+              </article>
             </Link>
           );
         })}

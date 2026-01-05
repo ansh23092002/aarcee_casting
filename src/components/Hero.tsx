@@ -1,5 +1,5 @@
 import React from "react";
-import { FaArrowRight, FaCogs, FaShieldAlt, FaClock } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 const Index = () => {
   return (
@@ -12,6 +12,7 @@ const Index = () => {
           loop
           playsInline
           muted
+          preload="auto"
           className="opacity-90 scale-x-[-1] w-full h-full object-cover"
         />
       </div>
@@ -23,6 +24,7 @@ const Index = () => {
           loop
           playsInline
           muted
+          preload="auto"
           className="opacity-90 scale-x-[-1] w-full h-full object-cover"
         />
       </div>
@@ -36,10 +38,17 @@ const Index = () => {
             Delivering exceptional quality steel casting with cutting-edge technology and decades of expertise.
           </p>
           <div className="flex flex-row gap-2 sm:gap-4 justify-start mb-12">
-            <a href="#contact" className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg flex items-center justify-center gap-1 sm:gap-2 transition duration-300 hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 shadow-lg text-xs sm:text-base">
+            <a 
+              href="#contact-form" 
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg flex items-center justify-center gap-1 sm:gap-2 transition duration-300 hover:from-[#F8EEDF] hover:to-[#E8C999] transform hover:scale-105 shadow-lg text-xs sm:text-base cursor-pointer"
+            >
               Request a Quote <FaArrowRight className="text-xs sm:text-base" />
             </a>
-            <a href="/about" className="border-2 border-[ ] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg transition duration-300 text-xs sm:text-base">
+            <a href="/about" className="border-2 border-[#E8C999] text-[#E8C999] hover:bg-[#E8C999] hover:text-black font-semibold py-2 px-4 sm:py-3 sm:px-8 rounded-lg transition duration-300 text-xs sm:text-base" rel="noopener">
               Learn More
             </a>
           </div>

@@ -56,9 +56,9 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-br from-black via-[#8E1616] to-black">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-black via-[#8E1616] to-black min-h-screen flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
             Our <span className="text-[#E8C999]">Services</span>
           </h2>
@@ -67,11 +67,11 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {contents.map((item, index) => (
             <div
               key={item.id}
-              className="group bg-white rounded-3xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-[#E8C999]/50"
+              className="group bg-white rounded-3xl p-5 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100 hover:border-[#E8C999]/50"
             >
               <div className="mb-6 flex justify-center">
                 <div className="p-4 bg-gradient-to-br from-[#8E1616] to-[#E8C999] rounded-2xl group-hover:scale-110 transition-transform duration-300">

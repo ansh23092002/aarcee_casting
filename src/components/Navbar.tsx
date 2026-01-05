@@ -38,12 +38,12 @@ const Navbar: React.FC = () => {
             >
               About Us
             </Link>
-            <a 
-              href="#contact-form" 
-              className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black px-4 py-1 md:px-4 md:py-2 rounded-full font-semibold hover:from-[#F8EEDF] hover:to-[#E8C999] transition-all transform hover:scale-105 shadow-sm text-sm"
+            <Link 
+              href="/#contact-form" 
+              className="bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black px-4 py-1 md:px-4 md:py-2 rounded-full font-semibold hover:from-[#F8EEDF] hover:to-[#E8C999] transition-all transform hover:scale-105 shadow-sm text-sm cursor-pointer"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -61,7 +61,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile menu panel */}
       {open && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-xl">
+        <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-gray-700 shadow-xl">
           <div className="px-4 py-6 space-y-4">
             <Link 
               href="/" 
@@ -84,13 +84,13 @@ const Navbar: React.FC = () => {
             >
               About Us
             </Link>
-            <a 
-              href="#contact-form" 
+            <Link 
+              href="/#contact-form" 
               className="block bg-gradient-to-r from-[#E8C999] to-[#F8EEDF] text-black px-6 py-3 rounded-full font-bold text-center hover:from-[#F8EEDF] hover:to-[#E8C999] transition-all"
               onClick={() => setOpen(false)}
             >
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       )}

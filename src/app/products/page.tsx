@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, lazy, Suspense } from "react";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import {
@@ -11,19 +11,21 @@ import {
 	Machine_Workshop,
 } from "../../Data/index";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import QuotationModal from "@/components/QuotationModal";
 import { FaArrowUp } from "react-icons/fa";
 
-const ProductPage = () => {
+// Lazy load heavy components
+const Footer = lazy(() => import("@/components/Footer"));
+const QuotationModal = lazy(() => import("@/components/QuotationModal"));
+
+function ProductContent() {
 	const [showScrollTop, setShowScrollTop] = useState(false);
 	const categories = [
-		{ id: "gray-cast-iron", name: "Gray Cast Iron Products Casting", data: grayCastIronProducts },
-		{ id: "high-manganese", name: "High Manganese Steel Casting ", data: High_Manganese_Steel },
-		{ id: "steel-casting", name: "Steel Casting Casting ", data: Steel_Casting },
-		{ id: "alloy-steel", name: "Alloy Steel Casting ", data: Alloy_Steel },
+		{ id: "gray-cast-iron", name: "Gray Cast Iron Products", data: grayCastIronProducts },
+		{ id: "high-manganese", name: "High Manganese Steel", data: High_Manganese_Steel },
+		{ id: "steel-casting", name: "Steel Casting", data: Steel_Casting },
+		{ id: "alloy-steel", name: "Alloy Steel", data: Alloy_Steel },
 		{ id: "rolling-mill", name: "Rolling Mill Casting", data: Rolling_Mill_Casting },
-		{ id: "machine-workshop", name: "Machine Workshop Casting ", data: Machine_Workshop },
+		{ id: "machine-workshop", name: "Machine Workshop", data: Machine_Workshop },
 	];
 
 	const searchParams = useSearchParams();
@@ -36,6 +38,38 @@ const ProductPage = () => {
 		name: string;
 		category: string;
 	} | null>(null);
+
+	// Flatten products
+	const allProducts = useMemo(() => {
+		return categories.flatMap((c) => c.data.map((p) => ({ ...p, category: c.name, categoryId: c.id })));
+	}, [categories]);
+
+	// JSON-LD Schema for SEO
+	const jsonLd = {
+		"@context": "https://schema.org",
+		"@type": "CollectionPage",
+		"name": "Industrial Casting Products Catalog",
+		"description": "Comprehensive range of steel casting products including Gray Cast Iron, High Manganese Steel, Alloy Steel, Rolling Mill Castings, and Machine Workshop components.",
+		"url": "https://www.aarceecasting.com/products",
+		"provider": {
+			"@type": "Organization",
+			"name": "Aarcee Casting Industries",
+			"url": "https://www.aarceecasting.com"
+		},
+		"itemListElement": allProducts.map((product, index) => ({
+			"@type": "Product",
+			"position": index + 1,
+			"name": product.name,
+			"description": product.description,
+			"image": `https://www.aarceecasting.com${product.image}`,
+			"category": product.category,
+			"offers": {
+				"@type": "Offer",
+				"availability": "https://schema.org/InStock",
+				"priceCurrency": "INR"
+			}
+		}))
+	};
 
 	// sync from URL
 	useEffect(() => {
@@ -56,11 +90,6 @@ const ProductPage = () => {
 		window.addEventListener("scroll", handleScroll);
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
-
-	// Flatten products
-	const allProducts = useMemo(() => {
-		return categories.flatMap((c) => c.data.map((p) => ({ ...p, category: c.name, categoryId: c.id })));
-	}, [categories]);
 
 	const filtered = useMemo(() => {
 		let list = allProducts;
@@ -102,23 +131,29 @@ const ProductPage = () => {
 
 	return (
 		<>
+			{/* JSON-LD Schema for SEO */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+			
 			<Navbar />
-			<div className="min-h-screen bg-gradient-to-br from-[#F8EEDF] via-white to-[#F8EEDF] py-20 md:py-24 px-4 sm:px-6 lg:px-8">
+			<div className="min-h-screen bg-gradient-to-br from-[#F8EEDF] via-white to-[#F8EEDF] py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-7xl mx-auto">
-				<header className="text-center mb-12 md:mb-16">
-					<h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-4">
+				<header className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
+					<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-black mb-3 sm:mb-4">
 						Our <span className="text-[#8E1616]">Products</span>
 					</h1>
-					<p className="text-gray-700 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+					<p className="text-gray-700 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-4">
 						Explore our range of industrial castings and precision-engineered components.
 					</p>
 				</header>
 
 				{/* category chips */}
-				<div className="mb-10 flex flex-wrap gap-3 justify-center">
+				<div className="mb-6 sm:mb-8 md:mb-10 flex flex-wrap gap-2 sm:gap-3 justify-center">
 					<button 
 						onClick={() => goToCategory("all")} 
-						className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${
+						className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
 							activeCategory === "all" 
 								? "bg-gradient-to-r from-[#8E1616] to-[#E8C999] text-white shadow-lg" 
 								: "bg-white text-gray-700 border border-[#E8C999] hover:border-[#8E1616]"
@@ -130,7 +165,7 @@ const ProductPage = () => {
 						<button 
 							key={c.id} 
 							onClick={() => goToCategory(c.id)} 
-							className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${
+							className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full font-medium text-sm sm:text-base transition-all duration-300 transform hover:scale-105 ${
 								activeCategory === c.id 
 									? "bg-gradient-to-r from-[#8E1616] to-[#E8C999] text-white shadow-lg" 
 									: "bg-white text-gray-700 border border-[#E8C999] hover:border-[#8E1616]"
@@ -142,17 +177,17 @@ const ProductPage = () => {
 				</div>
 
 				{/* filters */}
-				<div className="mb-10 grid grid-cols-1 md:grid-cols-3 gap-4">
-					<div className="md:col-span-2 flex gap-4">
+				<div className="mb-6 sm:mb-8 md:mb-10 grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+					<div className="md:col-span-2 flex flex-col sm:flex-row gap-3 sm:gap-4">
 						<input 
 							value={searchTerm} 
 							onChange={(e) => setSearchTerm(e.target.value)} 
 							placeholder="Search products by name or description..." 
-							className="flex-1 border border-[#E8C999] rounded-lg px-4 py-3 focus:outline-none focus:border-[#8E1616] focus:ring-2 focus:ring-[#8E1616]/20 transition-all bg-white" 
+							className="flex-1 border border-[#E8C999] rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:border-[#8E1616] focus:ring-2 focus:ring-[#8E1616]/20 transition-all bg-white" 
 						/>
 						<button 
 							onClick={() => setSearchTerm("")} 
-							className="px-6 py-3 border border-[#E8C999] rounded-lg hover:bg-[#E8C999]/10 transition-colors font-medium"
+							className="px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base border border-[#E8C999] rounded-lg hover:bg-[#E8C999]/10 transition-colors font-medium"
 						>
 							Clear
 						</button>
@@ -162,7 +197,7 @@ const ProductPage = () => {
 						<select 
 							value={activeCategory} 
 							onChange={(e) => goToCategory(e.target.value)} 
-							className="w-full border border-[#E8C999] rounded-lg px-4 py-3 focus:outline-none focus:border-[#8E1616] focus:ring-2 focus:ring-[#8E1616]/20 transition-all bg-white"
+							className="w-full border border-[#E8C999] rounded-lg px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base focus:outline-none focus:border-[#8E1616] focus:ring-2 focus:ring-[#8E1616]/20 transition-all bg-white"
 						>
 							<option value="all">All Categories</option>
 							{categories.map((c) => (
@@ -173,44 +208,55 @@ const ProductPage = () => {
 				</div>
 
 				{/* products grid */}
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-					{filtered.map((p, idx) => (
-						<article 
-							key={`${p.categoryId}-${idx}`} 
-							className="bg-white border border-[#E8C999] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
-						>
-							<div className="relative h-56 md:h-64 w-full overflow-hidden">
-								<Image 
-									src={p.image} 
-									alt={p.name} 
-									fill 
-									className="object-cover transition-transform duration-300 group-hover:scale-110" 
-								/>
-							</div>
-							<div className="p-5 md:p-6">
-								<h3 className="font-bold text-lg md:text-xl text-black mb-3 line-clamp-2">
-									{p.name}
-								</h3>
-								<p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4 line-clamp-3">
-									{p.description}
-								</p>
-								<div className="pt-3 border-t border-[#E8C999] space-y-3">
-									<div className="flex items-center justify-between">
-										<span className="text-xs md:text-sm text-[#8E1616] font-semibold bg-[#E8C999]/20 px-3 py-1 rounded-full">
-											{p.category}
-										</span>
-									</div>
-									<button
-										onClick={() => openQuotationModal(p.name, p.category)}
-										className="w-full bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-4 py-2.5 rounded-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-lg"
-									>
-										Request Quotation
-									</button>
+				<section aria-label="Products catalog">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+						{filtered.map((p, idx) => (
+							<article 
+								key={`${p.categoryId}-${idx}`} 
+								className="bg-white border border-[#E8C999] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+								itemScope 
+								itemType="https://schema.org/Product"
+							>
+								<div className="relative h-48 sm:h-56 md:h-64 w-full overflow-hidden">
+									<Image 
+										src={p.image} 
+										alt={p.alt || `${p.name} - ${p.description}`} 
+										fill 
+										className="object-cover transition-transform duration-300 group-hover:scale-110"
+										sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+										loading="lazy"
+										quality={85}
+										itemProp="image"
+										placeholder="blur"
+										blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mN8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+									/>
 								</div>
-							</div>
-						</article>
-					))}
-				</div>
+								<div className="p-4 sm:p-5 md:p-6">
+									<h3 className="font-bold text-base sm:text-lg md:text-xl text-black mb-2 sm:mb-3 line-clamp-2" itemProp="name">
+										{p.name}
+									</h3>
+									<p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 line-clamp-3" itemProp="description">
+										{p.description}
+									</p>
+									<div className="pt-2 sm:pt-3 border-t border-[#E8C999] space-y-2 sm:space-y-3">
+										<div className="flex items-center justify-between">
+											<span className="text-xs sm:text-sm text-[#8E1616] font-semibold bg-[#E8C999]/20 px-2 sm:px-3 py-1 rounded-full" itemProp="category">
+												{p.category}
+											</span>
+										</div>
+										<button
+											onClick={() => openQuotationModal(p.name, p.category)}
+											className="w-full bg-gradient-to-r from-[#8E1616] to-[#B91C1C] text-white font-bold px-3 sm:px-4 py-2 sm:py-2.5 text-sm sm:text-base rounded-lg hover:from-[#B91C1C] hover:to-[#8E1616] transform hover:scale-105 transition-all duration-300 shadow-lg"
+											aria-label={`Request quotation for ${p.name}`}
+										>
+											Request Quotation
+										</button>
+									</div>
+								</div>
+							</article>
+						))}
+					</div>
+				</section>
 
 				{filtered.length === 0 && (
 					<div className="text-center py-20 md:py-24">
@@ -222,16 +268,20 @@ const ProductPage = () => {
 			</div>
 		
 		</div>
-		<Footer />
+		<Suspense fallback={null}>
+			<Footer />
+		</Suspense>
 
 		{/* Quotation Modal */}
 		{selectedProduct && (
-			<QuotationModal
-				isOpen={isModalOpen}
-				onClose={closeQuotationModal}
-				productName={selectedProduct.name}
-				productCategory={selectedProduct.category}
-			/>
+			<Suspense fallback={null}>
+				<QuotationModal
+					isOpen={isModalOpen}
+					onClose={closeQuotationModal}
+					productName={selectedProduct.name}
+					productCategory={selectedProduct.category}
+				/>
+			</Suspense>
 		)}
 
 		{/* Scroll to Top Button - Mobile Only */}
@@ -246,7 +296,16 @@ const ProductPage = () => {
 		)}
 		</>
 	);
-};
+}
 
-export default ProductPage;
-
+export default function ProductPage() {
+	return (
+		<Suspense fallback={
+			<div className="min-h-screen flex items-center justify-center">
+				<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8E1616]"></div>
+			</div>
+		}>
+			<ProductContent />
+		</Suspense>
+	);
+}
