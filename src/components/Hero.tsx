@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const Index = () => {
   return (
-    <div className="relative bg-black min-h-screen">
+    <div className="sticky top-0 bg-black min-h-screen z-0">
       {/* Mobile view */}
       <div className="relative sm:hidden w-full h-screen">
         <video

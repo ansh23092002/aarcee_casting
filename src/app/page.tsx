@@ -62,33 +62,39 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Suspense fallback={<SectionLoader />}>
-          <section id="about">
+          <section id="about" className="relative z-10 bg-white">
             <About showTeam={false} showFullContent={false} />
           </section>
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
-          <section id="services">
+          <section id="services" className="relative z-10 bg-white">
             <Services />
           </section>
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
-          <section id="products">
+          <section id="products" className="relative z-10 bg-white">
             <Product />
           </section>
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
-          <Stats />
+          <div className="relative z-10 bg-white">
+            <Stats />
+          </div>
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
-          <section id="quality">
+          <section id="quality" className="relative z-10 bg-white">
             <Quality />
           </section>
         </Suspense>
         <Suspense fallback={<SectionLoader />}>
-          <GetIntouch />
+          <div className="relative z-10 bg-white">
+            <GetIntouch />
+          </div>
         </Suspense>
         <Suspense fallback={null}>
-          <Footer />
+          <div className="relative z-10">
+            <Footer />
+          </div>
         </Suspense>
       </div>
 
