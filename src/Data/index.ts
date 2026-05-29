@@ -15,6 +15,12 @@ export const grayCastIronProducts: Product[] = [
     alt: "Heavy-duty industrial gray cast iron flywheels and pulleys for automotive engines",
   },
   {
+    name: "CI Pan",
+    description: "Gray cast iron pan casting with durable construction and reliable heat retention for utility applications.",
+    image: '/assets/image/products/CI pan.jpeg',
+    alt: "Gray cast iron CI pan casting for industrial and utility applications",
+  },
+  {
     name: "Bearing Housings",
     description: "Stable and accurate housings for bearings and machinery with superior vibration dampening properties.",
     image: "/assets/image/products/bearing-block-casting.webp",
